@@ -1,9 +1,12 @@
-import React from 'react';
+// import React from 'react';
 import { Alert, Platform} from 'react-native';
 import AddChildView from './AddChildView';
 import familyUnitRepository from "../../stores/FamilyUnitDataStore";
 import {observer} from "mobx-react";
 import userRepository from "../../stores/UserDataStore";
+// import CreateChoreView from './CreateChoreView';
+import React, { Fragment } from 'react'
+import CreateChoreContainer from '../ChoreBoard/CreateChoreContainer'
 
 const defaultFormState = {
     dobM: Platform.OS === 'ios' ? 1 : "",
@@ -18,7 +21,8 @@ class AddChildContainer extends React.Component{
         firstName: "",
         ...defaultFormState,
         modalVisible: false,
-        modalText: "Child added!"
+        modalText: "Child added!",
+        chore: "wash car"
     }
     modalClose = () => {
         console.log("modalClose handler called");
@@ -58,25 +62,41 @@ class AddChildContainer extends React.Component{
         const idToken = userRepository.idToken;
         const saveResult = await familyUnitRepository.addChild(firstName, dob, gender==="m" ? "male" : "female", idToken);
         if (!saveResult) return Alert.alert("Server Error", "Please try again later");
+       
+    //  familyUnitRepository.addChore(choreData, idToken);
+       
+ 
+
+
+        console.log(this.state.chore);
         console.log("add Child Result", saveResult);
         this.setState(() => ({modalVisible: true}))
-
+        
         // this.setState(() => ({ firstName: "", dob: "", gender: ""}));
         // this.showAlert();
     }
     render() {
-        return (
+      
+      return (
+            <Fragment>
             <AddChildView
                 {...this.state}
                 kidsList={familyUnitRepository.kidsList}
                 onChangeText={this.updateForm}
                 onAddChild={this.onAddChild}
                 onDeleteChild={this.onDeleteChild}
-
+                
                 modalClose={this.modalClose}
                 modalAccept={this.addAnotherChild}
                 modalDeny={this.returnToDashboard}
             />
+            
+            {/* <CreateChoreView/> */}
+            
+            
+            
+            
+            </Fragment>
         );
     }
 }

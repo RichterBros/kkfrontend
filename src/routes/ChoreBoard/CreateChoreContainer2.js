@@ -1,31 +1,30 @@
-import React, { Fragment } from "react";
+import React from "react";
 import {
     Alert
 } from 'react-native';
-import CreateChoreView from './CreateChoreView';
-import CreateChoreView2 from './CreateChoreView2';
+import CreateChoreView2 from './CreateChoreView';
 import {observer} from "mobx-react";
 import familyUnitRepository from "../../stores/FamilyUnitDataStore";
 import userRepository from "../../stores/UserDataStore";
 import choresRepository from "../../stores/DefaultChoresStore";
 
 @observer
-class CreateChoreContainer extends React.Component{
+class CreateChoreContainer2 extends React.Component{
     state = {
-        choreName: "test",
+        choreName: "Wash Car",
         choreDays: [true, false, false, false, false, false, false],
         choreFrequency: "weekly",
         monthlyChoreInterval: null,
         chorePriority: 2,
         choreAppliedTo: [],
         choreNotes: '',
-        submitting: false,
+        submitting: true,
         modalVisible: false,
         modalText: "Success"
     }
     componentDidMount(){
         choresRepository.loadChoresFromApi(userRepository.idToken);
-        console.log('createChoreContainer')
+        console.log('@@@@@@@Hello');
     }
     updateForm = (field, newVal) => this.setState({ [field]: newVal } )
     toggleKidSelection = (kidId) => {
@@ -36,7 +35,7 @@ class CreateChoreContainer extends React.Component{
     }
 
     modalClose = () => this.setState(() => ({modalVisible: false}))
-    modalAddAnotherChore = () => this.setState(()=> ({choreName: "",
+    modalAddAnotherChore = () => this.setState(()=> ({choreName: "Wash Car",
         choreDays: [true, false, false, false, false, false, false],
         choreFrequency: "weekly",
         monthlyChoreInterval: null,
@@ -93,9 +92,7 @@ class CreateChoreContainer extends React.Component{
         const {choreSuggestions} = choresRepository;
 
         return (
-          <Fragment>
-            
-            <CreateChoreView
+            <CreateChoreView2
                 {...this.props}
                 {...this.state}
                 updateForm={this.updateForm.bind(this)}
@@ -106,13 +103,11 @@ class CreateChoreContainer extends React.Component{
                 modalClose={this.modalClose}
                 modalAccept={this.modalAddAnotherChore}
                 modalDeny={this.modalBackToDashboard}
+                
             />
-
-         
-       </Fragment>
         );
     }
 }
 
 
-export default CreateChoreContainer;
+export default CreateChoreContainer2;

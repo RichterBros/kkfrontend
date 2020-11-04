@@ -18,6 +18,7 @@ import Settings from './Settings';
 import AddChildContainer from "./AddFamilyUnitMember/AddChildContainer";
 import AccountManager from "./AccountManager";
 import CreateChoreContainer from "./ChoreBoard/CreateChoreContainer";
+import CreateChoreContainer2 from "./ChoreBoard/CreateChoreContainer2";
 import CreateRewardContainer from "./RewardsFeed/CreateRewardContainer";
 import EditChoreContainer from "./ChoreBoard/EditChoreContainer";
 import EditRewardContainer from "./RewardsFeed/EditRewardContainer";
@@ -141,7 +142,10 @@ class MainTabScreen extends React.Component{
                     <Route path="/maintabscreen/postregonboarding/2" component={PostRegOnboarding2} />
                     <Route path="/maintabscreen/addfamilyunitmember" component={AddChildContainer} />
                     <Route path="/maintabscreen/addfamilyadmin" component={AddFamilyAdminContainer} />
+                    
                     <Route path="/maintabscreen/createchore" component={CreateChoreContainer} />
+                    <Route path="/maintabscreen/createchore2" component={CreateChoreContainer2} />
+                    
                     <Route path="/maintabscreen/editchore/:choreid" component={EditChoreContainer} />
                     <Route path="/maintabscreen/createreward" component={CreateRewardContainer} />
                     <Route path="/maintabscreen/editreward/:rewardid" component={EditRewardContainer} />

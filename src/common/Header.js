@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Fragment } from 'react'
+import {observer} from 'mobx-react';
 import {
     View,
     Image,
@@ -16,24 +17,40 @@ import AddButton from "./AddButton";
 import DeleteAlertsButton from "../routes/Alerts/DeleteAlertsButton";
 import familyUnitRepository from "../stores/FamilyUnitDataStore";
 
+
 const {width, height} = Dimensions.get("window");
 
 
 const Header = ({history, leftAction, rightAction, ...props}) => {
-    const chooseRightAction = actionName => {
+   
+  const chooseRightAction = actionName => {
         if (!actionName) return null;
         switch (actionName){
             case 'logout': return  <LogoutButton history={history}/>;
             case 'addChore': return (
+                <Fragment>
                 <AddButton
-                    route="/maintabscreen/createchore"
+                    route="/maintabscreen/createchore2"
                     pulsating={
                         !familyUnitRepository.existingChores ||
                         !familyUnitRepository.existingChores.length ||
                         familyUnitRepository.existingChores.length < 5
                     }
+                    
                 />
-            );
+               
+               <AddButton
+                    route="/maintabscreen/createchore2"
+                    pulsating={
+                        !familyUnitRepository.existingChores ||
+                        !familyUnitRepository.existingChores.length ||
+                        familyUnitRepository.existingChores.length < 5
+                    }
+                    
+                />
+            </Fragment>
+            
+                );
             case 'addReward': return (
                 <AddButton
                     route="/maintabscreen/createreward"

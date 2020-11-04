@@ -10,6 +10,9 @@ import {
 } from 'react-native';
 import {Ionicons} from 'react-native-vector-icons';
 
+import {submitChore} from '../ChoreBoard/CreateChoreView';
+import {submitting} from '../ChoreBoard/CreateChoreView';
+
 import KKButton from "../../common/KKButton";
 import KKTextInput from "../../common/KKTextInput";
 import Text from "../../common/KKText";
@@ -21,6 +24,10 @@ import FullPageWithModal from "../../common/FullPageWithModal";
 import Header from "../../common/Header";
 import {scaleRatio} from "../../configuration";
 import AdultModalContent from "../../common/AdultModalContent";
+import CreateChoreContainer2 from '../ChoreBoard/CreateChoreContainer2';
+
+
+
 let pkg = require('../../../app');
 
 const {width, height} = Dimensions.get("window");
@@ -60,6 +67,11 @@ const AddChildView = ({
         <KeyboardAvoidingView behavior={Platform.OS === 'android' ? null : 'padding'}>
 
             <ScrollView>
+            
+            {/* <KKButton type={"primary"} onPress={!submitting ? CreateChoreView.submitChore : ()=>"Mow Lawn"}>
+                    {submitting? 'PLEASE WAIT' : 'SAVE'}
+                </KKButton> */}
+                
                 <ImageBackground
                     height={height}
                     width={width}
@@ -72,6 +84,7 @@ const AddChildView = ({
                             {/*style={{width: width * 0.4, resizeMode: 'contain'}}*/}
                             {/*source={require("../../../assets/images/kk-letters.png")}/>*/}
                         <View style={styles.kidRow}>
+                            
                             {
                                 kidsList.map(kid => (
                                     <TouchableOpacity key={kid._id} onLongPress={() => onDeleteChild(kid)}>
@@ -136,7 +149,10 @@ const AddChildView = ({
                                 Female
                             </Text>
                         </View>
-                        <KKButton type="primary" onPress={onAddChild}>ADD CHILD</KKButton>
+                        
+                       
+                        {/* <KKButton type="primary" onPress={CreateChoreContainer2}>create chore</KKButton> */}
+                        <KKButton type="primary" onPress={onAddChild }>ADD CHILD</KKButton>
                         <KKButton type="secondary" to="/maintabscreen/accountmanager">QUIT</KKButton>
                     </View>
 

@@ -20,6 +20,24 @@ class App extends React.Component {
     state = {
         resourcesLoaded: false,
     }
+    
+    
+    
+    
+    // componentDidMount = () =>{
+    //   this.getPost();
+    // }
+    // getPost = () => {
+    //   app.get('/api')
+    //   .then((response) =>{
+    //     const data = response.data;
+
+    //     console.log('data has been received!!');
+    //   })
+    // }
+    
+    
+    
     async componentDidMount(){
         await Font.loadAsync({
             "Montserrat": require("./assets/fonts/monstserrat-regular.ttf"),

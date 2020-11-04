@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from "react";
 import {
     View,
     Dimensions,
@@ -13,13 +13,34 @@ import SwipableKidSelection from "../../common/SwipableKidSelection";
 import EmptyState from "../../common/EmptyState";
 import {fountainBlue, lightGrey} from "../../colors";
 import {scaleRatio} from "../../configuration";
+import choresRepository from "../../stores/DefaultChoresStore";
+import CreateChoreView2 from './CreateChoreView2';
+import CreateChoreView from './CreateChoreView';
+import CreateChoreContainer2 from './CreateChoreContainer2';
+import KKButton from "../../common/KKButton";
+import {observer} from "mobx-react";
+import {observable} from 'mobx';
+{/* <View >
+<KKButton type={"primary"} onPress={!CreateChoreView2.submitting ? CreateChoreView2.submitChore : ()=>""}>
+        {CreateChoreView2.submitting? 'SAVE' : 'SAVE'}
+    </KKButton>
+</View> */}
+
+  
 
 
 
-const ChoreBoardView = ({match:{path}, chores=[], kidsList=[], deleteChore, navigateToEditChore, ...props}) => (
+
+
+const ChoreBoardView2 = ({match:{path}, chores=[], kidsList=[], deleteChore, navigateToEditChore, ...props}) => (
     <View style={{flex: 1, alignSelf: 'stretch', justifyContent: 'flex-start', alignItems: 'center'}}>
         <Header leftAction={"avatarButton"} rightAction="addChore" />
-        <Text style={{color: fountainBlue,fontSize: 18 * scaleRatio, textAlign: 'center'}}>Chore Board---</Text>
+        <Text style={{color: fountainBlue,fontSize: 18 * scaleRatio, textAlign: 'center'}}>Chore Board--+</Text>
+        
+        <KKButton type={"primary"} onPress={ !CreateChoreView2.submitting ? CreateChoreView2.submitChore : ()=>""}>
+          {CreateChoreView2.submitting? 'SAVE' : 'Add Default Chore'} 
+         
+        </KKButton> 
         
         {
             kidsList.length === 0 ?
@@ -39,7 +60,7 @@ const renderChoresList = (kidsList=[], chores=[], deleteChore, navigateToEditCho
     chores.length > 0 ?
         <ScrollView style={{flex:1, alignSelf: 'stretch'}}>
            
-           
+          
             {
                 chores
                     .filter(chore => !chore.deleted)
@@ -51,7 +72,9 @@ const renderChoresList = (kidsList=[], chores=[], deleteChore, navigateToEditCho
                         let kidsWithThisChore = kidsList.filter(kid => (kid.assignedChores||[]).includes(chore._id));
                         if (kidsWithThisChore.length === 0) kidsWithThisChore = [{name: "Not assigned"}];
                         return (
-                         
+                         <Fragment>
+                      
+                        
                             <TouchableOpacity onPress={()=>navigateToEditChore(chore._id)} onLongPress={()=>deleteChore(chore)} key={chore._id}>
                                 <ItemTile
                                     mainCaption={chore.name}
@@ -60,10 +83,11 @@ const renderChoresList = (kidsList=[], chores=[], deleteChore, navigateToEditCho
                             
                           
                             </TouchableOpacity>
-                          
+                            </Fragment>
                         );
                     })
             }
+       
         </ScrollView> :
         <Text style={styles.label}> No chores yet. Create chores by tapping the top right button </Text>
 
@@ -79,4 +103,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ChoreBoardView;
+export default ChoreBoardView2;

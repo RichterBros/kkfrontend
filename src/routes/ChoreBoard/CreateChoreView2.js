@@ -85,7 +85,7 @@ const renderModalContents = (modalText, modalAccept, modalDeny) => () => (
     />
 );
 
-const CreateChoreView = ({
+const CreateChoreView2 = ({
     match: {path},
     updateForm,
     choreName = "",
@@ -197,8 +197,8 @@ const CreateChoreView = ({
                 }
             </View>
             <View style={[styles.bottomMargin, {alignItems: 'center'}]}>
-                <KKButton type={"primary"} onPress={!submitting ? submitChore : ()=>""}>
-                    {submitting? 'PLEASE WAIT' : 'SAVE'}
+            <KKButton type={"primary"} onPress={!submitting ? submitChore : ()=>""}>
+                    {submitting? 'SAVE' : 'SAVE'}
                 </KKButton>
             </View>
         </ScrollView>
@@ -279,4 +279,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default observer(CreateChoreView);
+export default observer(CreateChoreView2);
