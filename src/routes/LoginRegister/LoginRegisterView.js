@@ -26,6 +26,7 @@ const LoginRegisterView = (props) => (
                     source={require("../../../assets/images/kk-combo.png")} />
             </View>
             <View style={styles.buttonContainer}>
+            <KKButton type="primary" to={"/nonauth/onboarding/1"}>Take a tour!</KKButton>
                 <KKButton type="primary" to={"/nonauth/login"}>Login</KKButton>
                 <KKButton type="secondary" to='/nonauth/registerchooseparentchild'>Register</KKButton>
             </View>
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     buttonContainer: {
-        height: height * 0.25,
+        height: height * 0.35,
         alignSelf: 'stretch',
         alignItems: 'center'
     }

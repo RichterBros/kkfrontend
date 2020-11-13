@@ -24,7 +24,7 @@ class UserDataStore{
     @observable accessToken;
     @observable idToken;
     @observable nextRoute = "/";
-    @observable hasSeenCaroussel = null;
+    @observable hasSeenCaroussel = true;
 
     async checkHasSeenCaroussel(){
         if (this.hasSeenCaroussel !== null) return this.hasSeenCaroussel;
